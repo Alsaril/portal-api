@@ -19,22 +19,21 @@ var port = process.env.PORT || 9000;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
-var router = express.Router();              // get an instance of the express Router
 
-    router.get('/feed', function(req, res) {
-    res.json({ message: 'Hey, here will be blogs!' });
-});
+var feed = require('./routes/feed');
+var users = require('./routes/users');
+var blogs = require('./routes/blogs');
+var schedule = require('./routes/schedule');
 
-router.get('/schedule', function(req, res) {
-    res.json({ message: 'Here we will place schedule' });
-});
 
 
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('/api/feed', feed);
+app.use('/api/blogs', blogs);
+app.use('/api/people', users);
+app.use('/api/schedule', schedule);
 
 // START THE SERVER
 // =============================================================================
